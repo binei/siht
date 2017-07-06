@@ -1,8 +1,22 @@
 //var vsavprasanja = JSON.parse(window.localStorage.getItem("vsavprasanja"));
+//var vsavprasanja=[];
+
+
+
+/*
+for(var i= 0; i<vsavpr.length; i++){
+	var podatki = {vprasanje: vsavpr[i],odgovori: vsiodg[i], tocke: vsiidodg[i] };
+	console.log(podatki);
+	//vsavprasanja.push(podatki);
+}
+*/
+
+
 var vasiodg= Array(vsavprasanja.length).fill(-1);
 var trenutnoVprasanje=0;
 var stvprasanj= vsavprasanja.length;
 //document.getElementById('oceni').style.visibility = "hidden";
+
 
 
 //za stran
@@ -100,8 +114,12 @@ $(document).ready(function(){
 	
 	var stTock = function(){
 		var tock= 0;
+		//to je pripravljeno za v naprej.... v arrayu tocke bodo id-ji posameznih odgovorov pri vprasanjih, tako bom s to funkcijo
+		//izvedel kateri id.ji so bili izbrani in nato je v PHP potrebno poslati le id array (spodaj) ter tam poracunati koliko tock so vredni....
+		var id=[];
 		for(var i = 0; i < vsavprasanja.length; i++){
 			tock+= vsavprasanja[i].tocke[vasiodg[i]];
+			id.push(vsavprasanja[i].tocke[vasiodg[i]]);
 		}
 		return tock;
 	}

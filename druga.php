@@ -19,6 +19,9 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="vprasanja.js"></script>
+        
+        
+
         <script src="skripta2.js"></script>
         
             <style>
@@ -308,6 +311,10 @@ position: absolute;
         
     </head> 
     <body>
+
+    	
+    	
+    	
         <section id="logos">
         	<!--<div class="container">-->
             	<div class="row">
@@ -342,10 +349,79 @@ position: absolute;
         
         
 <!--        <h1>To je vas kviz</h1> -->
+<?php
+
+$vsavpr=array();
+$vsiodg=array();
+$vsiidodg=array();
+
+
+$servername = getenv('IP');
+$username = getenv('C9_USER');
+$password = "";
+$database = "c9";
+$dbport = 3306;
+
+// Create connection
+$db = new mysqli($servername, $username, $password, $database, $dbport);
+if (!$db) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$kvizID = 1;
+$sql="SELECT id, vprasanje FROM vprasanja WHERE id_kviza=$kvizID";
+if ($result=mysqli_query($db,$sql))
+  {
+  // Fetch one and one row
+  while ($row=mysqli_fetch_row($result)){	
+  	$odg = array();
+	$id_odg=array();
+	$vp=array();
+	
+	echo "<br> vprasanje";
+	echo $row[0]. " ";
+    echo $row[1]. " ";
+    	
+    $vpr="SELECT id, odgovor FROM odgovori WHERE id_vprasanja = $row[0] ";
+    if ($rez=mysqli_query($db,$vpr)){
+		while ($vrstica=mysqli_fetch_row($rez)){
+			echo $vrstica[1]. " ";
+			array_push($odg, $vrstica[1]);
+			array_push($id_odg,$vrstica[0]);
+		}
+    }
+	array_push($vsavpr,$row[1]);
+	array_push($vsiodg,$odg);
+	array_push($vsiidodg,$id_odg);
+    }
+    
+    
+}
+
+echo "<br> PRINTAMO ARRAYE <br>";
+print_r ($vsavpr);
+echo "<br>";
+print_r ($vsiodg);
+echo "<br>";
+print_r ($vsiidodg);
+
+//file_put_contents("vprasanja.js","var vsavpr= " .$vsavpr.";",FILE_APPEND);
+//file_put_contents("vprasanja.js","var vsiid0dg= " .$vsiidodg.";",FILE_APPEND);
+//file_put_contents("vprasanja.js","var vsiodg= " .$vsiodg.";",FILE_APPEND);
+
+?>
+<script type="text/javascript">
+	var vsavpr=<?php echo json_encode($vsavpr);   ?>;
+	var vsiodg=<?php echo json_encode($vsiodg);   ?>;
+	var vsiidodg=<?php echo json_encode($vsiidodg);   ?>;
+
+</script>
+
+
 
 <section id="heading2">
 	
-        <input  id="izpisi" type="button" class="btn btn-default" value="izpisi" />
+        <input  id="izpisi" type="button" class="btn  answer" value="izpisi" />
         <div id= vprasaj></div>
         <form class="form-inline">
             <div id="moznost">
@@ -354,16 +430,16 @@ position: absolute;
             
         </form>
         <div id="gumbi" align="center">
-            <input  id="nazaj" type="button" class="btn btn-default" value="NAZAJ" />
-            <input  id="naprej" type="button" class="btn btn-default" value="NAPREJ" />
-            <input  id="zakljuci" type="button" class="btn btn-default" value="zakljuci kviz" />
+            <input  id="nazaj" type="button" class="btn  answer red" value="NAZAJ" />
+            <input  id="naprej" type="button" class="btn  answer blue" value="NAPREJ" />
+            <input  id="zakljuci" type="button" class="btn  answer blue" value="zakljuci kviz" />
             <!-- <input  id="preveri" type="button" value="preveri" /> -->
         </div>
         <br>
         <div id="drugigumbi" align="center">
             <!-- <input  id="preveri" type="button" value="preveri" /> -->
-            <input  id="oceni" type="button" class="btn btn-default" value="oceni me!" />
-            <input  id="download" type="button" class="btn btn-default" value="download!" />
+            <input  id="oceni" type="button" class="btn  answer" value="oceni me!" />
+            <input  id="download" type="button" class="btn  answer" value="download!" />
             
         </div>        
         <!--

@@ -1,3 +1,21 @@
+/*
+
+        <?php
+			$vprasanje="ddede";
+        ?>
+        <script type="text/javascript">
+        	var vsavprasanja=[{"vprasanje":"de","odgovori":["de","d"],"tocke":[1,0]}];
+        		var vsavprasanja= <?php 
+        		echo $vprasanje; 
+        ?>
+        		
+        </script>
+
+
+*/
+
+
+
 
 var vsavprasanja=[];
 var vsetocke=[];
