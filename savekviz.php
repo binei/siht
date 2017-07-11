@@ -3,7 +3,7 @@ $podatki=$_POST['podatki'];
 $obj = json_decode($podatki);
 
 //tale doda vprasanja v datoteko ko bo baza delala je treba odstranit!
-file_put_contents("vprasanja.js","var vsavprasanja=".$podatki.";",LOCK_EX);
+//file_put_contents("vprasanja.js","var vsavprasanja=".$podatki.";",LOCK_EX);
 
 
 

@@ -368,7 +368,7 @@ if (!$db) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$kvizID = 1;
+$kvizID = 2;
 $sql="SELECT id, vprasanje FROM vprasanja WHERE id_kviza=$kvizID";
 if ($result=mysqli_query($db,$sql))
   {
@@ -404,21 +404,25 @@ echo "<br>";
 print_r ($vsiodg);
 echo "<br>";
 print_r ($vsiidodg);
+echo "var dump ";
+var_dump($vsavpr);
 
-//file_put_contents("vprasanja.js","var vsavpr= " .$vsavpr.";",FILE_APPEND);
-//file_put_contents("vprasanja.js","var vsiid0dg= " .$vsiidodg.";",FILE_APPEND);
-//file_put_contents("vprasanja.js","var vsiodg= " .$vsiodg.";",FILE_APPEND);
+
+file_put_contents("vprasanja.js", "", LOCK_EX);
+file_put_contents("vprasanja.js","var vsavpr= " .json_encode($vsavpr).";\n",FILE_APPEND | LOCK_EX);
+file_put_contents("vprasanja.js","var vsiidodg= " .json_encode($vsiidodg).";\n",FILE_APPEND | LOCK_EX);
+file_put_contents("vprasanja.js","var vsiodg= " .json_encode($vsiodg).";\n",FILE_APPEND | LOCK_EX);
+
 
 ?>
+
+
 <script type="text/javascript">
-	var vsavpr=<?php echo json_encode($vsavpr);   ?>;
-	var vsiodg=<?php echo json_encode($vsiodg);   ?>;
-	var vsiidodg=<?php echo json_encode($vsiidodg);   ?>;
+	var vsavpr=json_encode("<?php echo $vsavpr; ?>");
+	var vsiodg=json_encode("<?php echo $vsiodg; ?>");
+	var vsiidodg=json_encode("<?php echo $vsiidodg; ?>");
 
 </script>
-
-
-
 <section id="heading2">
 	
         <input  id="izpisi" type="button" class="btn  answer" value="izpisi" />

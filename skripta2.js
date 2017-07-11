@@ -1,23 +1,28 @@
 //var vsavprasanja = JSON.parse(window.localStorage.getItem("vsavprasanja"));
-//var vsavprasanja=[];
+
+var vsavprasanja=[];
 
 
 
-/*
 for(var i= 0; i<vsavpr.length; i++){
-	var podatki = {vprasanje: vsavpr[i],odgovori: vsiodg[i], tocke: vsiidodg[i] };
+	var idod=[];
+	for(var j = 0; j < vsiidodg[i].length; j++){
+		idod.push(parseInt(vsiidodg[i][j]));
+	}
+	
+	var podatki = {vprasanje: vsavpr[i],odgovori: vsiodg[i], tocke: idod};
 	console.log(podatki);
-	//vsavprasanja.push(podatki);
+	vsavprasanja.push(podatki);
+	console.log(vsavpr[i]);
 }
-*/
 
 
 var vasiodg= Array(vsavprasanja.length).fill(-1);
+var vasiodgid= Array(vsavprasanja.length).fill(-1);
+
 var trenutnoVprasanje=0;
 var stvprasanj= vsavprasanja.length;
 //document.getElementById('oceni').style.visibility = "hidden";
-
-
 
 //za stran
 var izpisivprasanja=function(){
@@ -67,7 +72,6 @@ var mozniodgovori=function(){
 		
 	if(vasiodg[trenutnoVprasanje] != -1)
 		$("#O"+vasiodg[trenutnoVprasanje]).prop("checked", true);
-	
 }
 
 
@@ -94,7 +98,6 @@ var potegnidol = function(){
 	dl("druga.php");
 	dl("stili2.css");
 	dl("vprasanja.js");
-	
 }
 
 $(document).ready(function(){
@@ -129,9 +132,7 @@ $(document).ready(function(){
     });
     
     $("#naprej").click(function(){
-			
-    	
-			
+
 			if (trenutnoVprasanje != -1 && vasiodg[trenutnoVprasanje] == -1){
 				$("#vnosvsajenega").text("izbrati morate en odgovor!");
 			}
@@ -139,6 +140,7 @@ $(document).ready(function(){
     	if(trenutnoVprasanje!=-1 ){
     		if(checkradio()!= -1)
     			vasiodg[trenutnoVprasanje] = checkradio();
+    			vasiodgid[trenutnoVprasanje]=vsiidodg[trenutnoVprasanje][checkradio()];
     	}
     	if(trenutnoVprasanje == -1 || vasiodg[trenutnoVprasanje] != -1){
 	    		$("#vnosvsajenega").text("");
@@ -158,6 +160,7 @@ $(document).ready(function(){
     	$("#vnosvsajenega").text("");
     	if(checkradio()!= -1)
 				vasiodg[trenutnoVprasanje] = checkradio();
+				vasiodgid[trenutnoVprasanje]=vsiidodg[trenutnoVprasanje][checkradio()];
 
     	if(trenutnoVprasanje > 0){
     		trenutnoVprasanje--;
@@ -196,12 +199,25 @@ $(document).ready(function(){
     $("#zakljuci").click(function(){
     	if(trenutnoVprasanje == vsavprasanja.length-1 && checkradio() != -1){
     		vasiodg[trenutnoVprasanje]=checkradio();
+    		vasiodgid[trenutnoVprasanje]=vsiidodg[trenutnoVprasanje][checkradio()];
     	}
     	else{
     		vasiodg[trenutnoVprasanje] = checkradio();
+    		vasiodgid[trenutnoVprasanje]=vsiidodg[trenutnoVprasanje][checkradio()];
     	}
     	
 			if(preveriKonec()){
+				
+				var proba=JSON.stringify(vasiodgid);
+				$.post( "ocenikviz.php",{podatki:proba})
+			  .done(function( data ) {
+			    alert( "Data Loaded: " + data );
+			  })
+			  
+			  .fail(function() {
+		    alert( "error" );
+		  });
+		  
 				console.log("BRAVOOOO RESILI STE KVIZ!!");
 				$("#vnosvsajenega").text("BRAVOOOO RESILI STE KVIZ!! dosegli ste: " +stTock() +" tock"  );
 			}
