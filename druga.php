@@ -336,13 +336,23 @@ position: absolute;
                   <div class="hero-content">
                   	<h1 class="zanima_me">zanima me,</h1>
                     <h4 class="koliko_vem">koliko vem.</h4>
-                    <h6 class="nagradni_kviz">Kviz za preverjanje znanja</h6>
+                    <h6 id="naslov" class="nagradni_kviz">Kviz za preverjanje znanja</h6>
                   </div>
                 </div>
            <!-- </div>-->
            <div class="pasica">
         	<div class="container">
-                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-xs-12 stevilkeV" id=krogci>
+    	
+        	
+            
+            
+          
+                        </div>  
+                    </div>
+                </div>
             </div>    
         </div>
     </header>
@@ -368,7 +378,36 @@ if (!$db) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+//SELECT @last_id := MAX(id) FROM kvizi
+
 $kvizID = 2;
+
+
+//ce zelite zadnji vneseni kviz odkomentirajte spodnje vrstice 
+/*
+$sq="SELECT id FROM kvizi WHERE id=(SELECT MAX(id) FROM kvizi)";
+if ($rezu=mysqli_query($db,$sq)){
+	while ($vrsta=mysqli_fetch_row($rezu)){
+		//echo $vrstica[1]. " ";
+		$kvizID=$vrsta[0];
+	}
+}
+*/
+
+
+
+$ime="";
+$sq="SELECT  ime_kviza FROM kvizi WHERE id = $kvizID ";
+if ($rezu=mysqli_query($db,$sq)){
+	while ($vrsta=mysqli_fetch_row($rezu)){
+		//echo $vrstica[1]. " ";
+		$ime=$vrsta[0];
+	}
+}
+
+
+
+
 $sql="SELECT id, vprasanje FROM vprasanja WHERE id_kviza=$kvizID";
 if ($result=mysqli_query($db,$sql))
   {
@@ -378,14 +417,14 @@ if ($result=mysqli_query($db,$sql))
 	$id_odg=array();
 	$vp=array();
 	
-	echo "<br> vprasanje";
-	echo $row[0]. " ";
-    echo $row[1]. " ";
+//	echo "<br> vprasanje";
+//	echo $row[0]. " ";
+//  echo $row[1]. " ";
     	
     $vpr="SELECT id, odgovor FROM odgovori WHERE id_vprasanja = $row[0] ";
     if ($rez=mysqli_query($db,$vpr)){
 		while ($vrstica=mysqli_fetch_row($rez)){
-			echo $vrstica[1]. " ";
+			//echo $vrstica[1]. " ";
 			array_push($odg, $vrstica[1]);
 			array_push($id_odg,$vrstica[0]);
 		}
@@ -395,9 +434,17 @@ if ($result=mysqli_query($db,$sql))
 	array_push($vsiidodg,$id_odg);
     }
     
-    
 }
 
+
+/*
+$sql = 'SELECT id FROM games LIMIT 1';
+$result = mysql_query($sql, $link) or die(mysql_error());
+$row = mysql_fetch_assoc($result);
+print_r($row);
+*/
+
+/*
 echo "<br> PRINTAMO ARRAYE <br>";
 print_r ($vsavpr);
 echo "<br>";
@@ -406,23 +453,25 @@ echo "<br>";
 print_r ($vsiidodg);
 echo "var dump ";
 var_dump($vsavpr);
-
+*/
 
 file_put_contents("vprasanja.js", "", LOCK_EX);
 file_put_contents("vprasanja.js","var vsavpr= " .json_encode($vsavpr).";\n",FILE_APPEND | LOCK_EX);
 file_put_contents("vprasanja.js","var vsiidodg= " .json_encode($vsiidodg).";\n",FILE_APPEND | LOCK_EX);
 file_put_contents("vprasanja.js","var vsiodg= " .json_encode($vsiodg).";\n",FILE_APPEND | LOCK_EX);
-
+file_put_contents("vprasanja.js","var ime= " .json_encode($ime).";\n",FILE_APPEND | LOCK_EX);
 
 ?>
 
-
+<!--
 <script type="text/javascript">
-	var vsavpr=json_encode("<?php echo $vsavpr; ?>");
-	var vsiodg=json_encode("<?php echo $vsiodg; ?>");
-	var vsiidodg=json_encode("<?php echo $vsiidodg; ?>");
+	var vsavpr=json_encode("<?php// echo $vsavpr; ?>");
+	var vsiodg=json_encode("<?php// echo $vsiodg; ?>");
+	var vsiidodg=json_encode("<?php// echo $vsiidodg; ?>");
 
 </script>
+
+-->
 <section id="heading2">
 	
         <input  id="izpisi" type="button" class="btn  answer" value="izpisi" />

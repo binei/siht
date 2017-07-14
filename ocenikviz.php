@@ -3,7 +3,7 @@ $podatki=$_POST['podatki'];
 $obj = json_decode($podatki);
 
 
-var_dump($obj);
+//var_dump($obj);
 
 //$testniprimer=array(5, 8, 9, 12, 13, 16, 17);
 
@@ -47,7 +47,7 @@ foreach ($obj as $value) {
 }
 
 echo "skupaj tock je :" . $skupajtock;
-
+//file_put_contents("vprasanja.js","var skupajtock= " .json_encode($skupajtock).";\n",FILE_APPEND | LOCK_EX);
 echo "OK";
 
 ?>

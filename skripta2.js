@@ -3,7 +3,6 @@
 var vsavprasanja=[];
 
 
-
 for(var i= 0; i<vsavpr.length; i++){
 	var idod=[];
 	for(var j = 0; j < vsiidodg[i].length; j++){
@@ -25,6 +24,35 @@ var stvprasanj= vsavprasanja.length;
 //document.getElementById('oceni').style.visibility = "hidden";
 
 //za stran
+
+var krogci=function(){
+	var prostor = document.querySelector("#krogci");
+	for(var i= 1; i <= vsavprasanja.length; i++){
+		prostor.innerHTML += '<div class="inactive-number stevilkaV" id="stevilka'+i+'">'+i+'</div> '
+		
+		
+		if(vasiodg[i] != -1){
+			$(".stevilka"+i).addClass("inactive-number active-number stevilkaV");
+		}
+		
+	}
+	obarvaj_krogce();
+}
+
+var obarvaj_krogce=function(){
+
+	//ce zbrises if in spodnjo vrstico bojo ostale prizgane ze izpolnejne
+	if(trenutnoVprasanje != 0)
+		document.getElementById("stevilka"+(trenutnoVprasanje)).className = "inactive-number stevilkaV";
+		
+	if(trenutnoVprasanje != vsavprasanja.length-1)
+		document.getElementById("stevilka"+(trenutnoVprasanje+2)).className = "inactive-number stevilkaV";
+		
+	document.getElementById("stevilka"+(trenutnoVprasanje+1)).className = "inactive-number active-number stevilkaV";
+	
+}
+
+
 var izpisivprasanja=function(){
 
 	for (var vpr in vsavprasanja) {
@@ -101,7 +129,12 @@ var potegnidol = function(){
 }
 
 $(document).ready(function(){
-	mozniodgovori();	
+	
+	
+	$("#naslov").text(ime);
+	
+	mozniodgovori();
+	krogci();
 	document.getElementById("nazaj").disabled = true;
 	
 	//document.getElementById('#oceni').style.visibility = 'hidden';
@@ -126,13 +159,16 @@ $(document).ready(function(){
 		}
 		return tock;
 	}
+	
+
+	
 
     $("#izpisi").click(function() {
       izpisivprasanja();  
     });
     
     $("#naprej").click(function(){
-
+			
 			if (trenutnoVprasanje != -1 && vasiodg[trenutnoVprasanje] == -1){
 				$("#vnosvsajenega").text("izbrati morate en odgovor!");
 			}
@@ -148,7 +184,7 @@ $(document).ready(function(){
 		    	if(trenutnoVprasanje < stvprasanj-1){
 		    		trenutnoVprasanje++;
 		    	}
-		    	
+		  obarvaj_krogce();
 		  mozniodgovori();
 		    
     	zamegligumbe();
@@ -165,6 +201,7 @@ $(document).ready(function(){
     	if(trenutnoVprasanje > 0){
     		trenutnoVprasanje--;
     	}
+    	obarvaj_krogce();
 			mozniodgovori();
 			zamegligumbe();
     });
@@ -225,8 +262,9 @@ $(document).ready(function(){
 				$("#vnosvsajenega").text("vsi odgovori morajo biti izpolnjeni!");
 			}
     });
-    
+   
+   /* 
     $("#link1").click(function(){
 		$("#myBtn").disabled = true;
-    });
+    });*/
 });

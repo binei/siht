@@ -19,8 +19,30 @@
 
 var vsavprasanja=[];
 var vsetocke=[];
-var st = 1;
+var st = 0;
+var od=[];
+var toc=[];
 
+
+var shrani=function() {
+	if (st == 0){
+		od=[];
+		toc=[];
+	}
+	for(var i= 0; i <st; i++){
+		od[i]=$("#odg" + i).val();
+		toc[i]=parseInt($("#V" + i).val());
+	}
+	od.push($("#odg" + st).val());
+	toc.push(parseInt($("#V" + i).val()));
+}
+
+var podaj=function(){
+		for(var i= 0; i <st; i++){
+		$("#odg" + i).val(od[i]);
+		parseInt($("#V" + i).val(toc[i]));
+	}
+}
 //za stran
 var izpisivprasanja=function(){
 
@@ -43,8 +65,8 @@ $(document).ready(function(){
    // jQuery methods go here...
   
    
-   var preglejpolja = function(){
-   	var odgovori=[];
+var preglejpolja = function(){
+   var odgovori=[];
    	
    	//tocke sem dodal samo tako za naprejsnje delo
    	//naceloma se vse dela z odgovori...
@@ -52,7 +74,7 @@ $(document).ready(function(){
    	var vprasanje = $("#vprasanje").val();
    	var ok =1;
    	
-   	for(var i=1; i<st; i++){
+   	for(var i=0; i<st; i++){
 		var odg = $("#odg" + i).val();
 		var rez = parseInt($("#V" + i).val());
 		if(odg != "" && !isNaN(rez) ){
@@ -85,13 +107,20 @@ $(document).ready(function(){
 	    
 		var vprasanja = document.querySelector("#vprasanja");
 		vprasanja.innerHTML= '';
-		st = 1; 
+		st = 0; 
 	    
 	    izpisivprasanja();
 		
 	}
 }
 
+
+	function vnesiIme() {
+    var txt;
+    var imekviza = prompt("PROSIM VNESITE ŠE IME KVIZA", "IME KVIZA");
+    vsavprasanja.push(imekviza);
+}
+	
    // document.querySelector("#dodajGumb").addEventListener('click',preglejpolja);
     $("#dodajGumb").click(function() {
       preglejpolja();  
@@ -100,36 +129,20 @@ $(document).ready(function(){
 
     
     $("#izdelaj").click(function() {
-		    	
+		
     	
     	console.log("Gumb izdelaj kviz je bil pritisnjen");
     	if(vsavprasanja.length >= 1){
+    		vnesiIme();
 	    	//window.localStorage.setItem("vsavprasanja", JSON.stringify(vsavprasanja));
 	    	//window.location = "druga.php";
-	    	
-	    	
-	    	
 	    	
 	    	var proba=JSON.stringify(vsavprasanja);
 	    	console.log("TO je proba : " + proba);
 	    	
 	    	//tocke sem naredil samo za naprej, ko bomo locili tocke od vprasanj
 	    	var probaTocke=JSON.stringify(vsetocke);
-	    	/*
-	    	var jqxhr = $.post( "savekviz.php", function() {
-			  alert( "success" );
-			})
-			  .done(function() {
-			    alert( "second success" );
-			  })
-			  .fail(function() {
-			    alert( "error" );
-			  })
-			  .always(function() {
-			    alert( "finished" );
-			  });
 			  
-			  */
 			  
 			  $.post( "savekviz.php",{podatki:proba})
 				  .done(function( data ) {
@@ -150,17 +163,20 @@ $(document).ready(function(){
     });
     
     $("#dodajOdg").click(function() {
+    	shrani();
     	console.log("Gumb dodaj odgovor je bil pritisnjen");
     	var opomniki = document.querySelector("#vprasanja");
-		opomniki.innerHTML += 'Vaš odgovor '+ st+  ' in stevilo tock zanj: <input id="odg'+ st +'" name="odg'+ st +'"  /> <input type="number" value=0 min="0" id="V'+ st +'" style="width: 4em" ><br>';
+		opomniki.innerHTML += 'Vaš odgovor '+ (st+1)+  ' in stevilo tock zanj: <input id="odg'+ st +'" name="odg'+ st +'"  /> <input type="number" value=0 min="0" id="V'+ st +'" style="width: 4em" ><br>';
+    	podaj();
     	st++;
+    	
 
     });
     $("#odstraniOdg").click(function() {
 		console.log("Gumb dodaj odgovor je bil pritisnjen");
 		var opomniki = document.querySelector("#vprasanja");
 		opomniki.innerHTML ='';
-		st = 1;
+		st = 0;
 
     });
     

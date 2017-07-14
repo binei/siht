@@ -21,9 +21,17 @@ if (!$db) {
 }
 
 
+
+//var_dump($obj);
 //TOLE DELA!!!
 
-$ime="IME KVIZA";
+$ime=end($obj);
+
+
+array_pop($obj);
+
+
+
 
 $stm = mysqli_prepare($db, "INSERT INTO kvizi (ime_kviza) VALUES (?)");
 mysqli_stmt_bind_param($stm, "s",$ime);
@@ -54,7 +62,7 @@ foreach ($obj as $value) {
     for($x = 0; $x < count($value->odgovori); $x++) {
         $toc=$value->tocke[$x];
         $od=(string)$value->odgovori[$x];
-       $stm = mysqli_prepare($db, "INSERT INTO odgovori (id_vprasanja,odgovor,tocke) VALUES (?, ?, ?)"); /* Query 1 */
+       $stm = mysqli_prepare($db, "INSERT INTO odgovori (id_vprasanja,odgovor,tocke) VALUES (?, ?, ?)"); 
         mysqli_stmt_bind_param($stm, "isi",$zadnje_vprid ,$od,$toc);
         mysqli_stmt_execute($stm);
 
@@ -63,6 +71,7 @@ foreach ($obj as $value) {
     
     //var_dump($value->vprasanje);
 }
+
 
 
 //var_dump($obj);
