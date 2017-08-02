@@ -1,4 +1,4 @@
-var vsavpr= ["Za najem stanovanjskega kredita moram imeti poroka.","Kreditojemalec kredita ne more pred\u010dasno odpla\u010dati.","Za odobritev stanovanjskega kredita mora ban\u010dno poslovalnico obiskati moj delodajalec.","Potro\u0161ni\u0161ki kredit je mo\u017eno izpla\u010dati v gotovini.","S potro\u0161ni\u0161kim kreditom lahko popla\u010dam tudi druge kredite in obveznosti iz naslova limitov ter kreditnih kartic.","ri lizingu za avto ni potrebno dodatno zavarovanje, na primer s porokom ali pri zavarovalnici, saj jamstvo predstavlja vozilo samo.","Ko odpla\u010date zadnji obrok lizinga za avto, postanete tudi pravni lastnik novega vozila."];
-var vsiidodg= [["5","6"],["7","8"],["9","10"],["11","12"],["13","14"],["15","16"],["17","18"]];
-var vsiodg= [["Dr\u017ei","Ne dr\u017ei"],["Dr\u017ei","Ne dr\u017ei"],["Dr\u017ei","Ne Dr\u017ei"],["Dr\u017ei","Ne dr\u017ei"],["Dr\u017ei","Ne dr\u017ei"],["Dr\u017ei","Ne dr\u017ei"],["Dr\u017ei","Ne dr\u017ei"]];
-var ime= "IME KVIZA";
+var vsavpr= ["prvo","drugo"];
+var vsiidodg= [["94","95"],["96","97","98"]];
+var vsiodg= [["1\/1","1\/2"],["2\/1","2\/2","2\/3"]];
+var ime= "se neki zmislim";

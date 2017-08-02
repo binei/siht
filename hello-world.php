@@ -9,6 +9,7 @@
         <link href="stili.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="skripta.js"></script>
+        
 
     
     </head> 
@@ -20,10 +21,10 @@
         				<td>
         					Vaše vprašanje: <input id="vprasanje" size="50" name="vprasanje" />
         				<td>
-        					<input  id="dodajOdg" type="button" value="Dodaj odgovor" />
+        					<input  id="dodajOdg" type="button" class="btn btn-default" value="Dodaj odgovor" />
         				</td>
         				<td>
-        					<input  id="odstraniOdg" type="button" value="izbrisi polja z odgovori" />
+        					<input  id="odstraniOdg" type="button" class="btn btn-default" value="izbrisi polja z odgovori" />
         				</td>
         			</tr>
         		</table>
@@ -32,8 +33,8 @@
             	<div id="vprasanja">
 
                 </div>
-               <input  id="dodajGumb" type="button" value="Dodaj vprasanje" />
-               <input  id="izdelaj" type="button" value="izdelaj kviz" /><br>
+               <input  id="dodajGumb" type="button" class="btn btn-default" value="Dodaj vprasanje" />
+               <input  id="izdelaj" type="button" class="btn btn-default" value="izdelaj kviz" /><br>
               <!-- <input  id="poizkusi" type="button" value="poizkusi" /><br> -->
                <p id="opozorilo"></p>
     		</form>
