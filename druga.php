@@ -9,9 +9,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-
+		
 		<title>Kaj veste o financiranju?</title>
-
+		
 		<link href="css/clean-blog.css" rel="stylesheet">
 		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css?version=<?php echo $ver; ?>" rel="stylesheet">
@@ -302,6 +302,7 @@ background:#006db7;
 						<h6 id="naslov" class="nagradni_kviz">Kviz za preverjanje znanja</h6>
 					</div>
 				</div>
+			</div>
 			<div class="pasica">
 				<div class="container">
 					<div class="row">

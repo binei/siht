@@ -372,9 +372,9 @@ background:#006db7;
 				} elseif ($skupajtock == 2) {
 				    echo " BRAVO OSVOJILI STE: 2 TOCKI";
 				} elseif ($skupajtock == 3) {
-				    echo " BRAVO OSVOJILI STE: 2 TOCKE";
+				    echo " BRAVO OSVOJILI STE: 3 TOCKE";
 				} elseif ($skupajtock == 4) {
-				    echo " BRAVO OSVOJILI STE: 2 TOCKE";
+				    echo " BRAVO OSVOJILI STE: 4 TOCKE";
 				} else {
 				    echo " BRAVO OSVOJILI STE: " . $skupajtock ." TOCK";
 				}
