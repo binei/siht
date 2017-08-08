@@ -162,8 +162,6 @@ $(document).ready(function() {
 			});
 
 			window.location = "druga.php";
-
-
 		}
 		else {
 			$("#opozorilo").text("DODATI MORATE VSAJ ENO VPRASANJE!");
@@ -174,7 +172,24 @@ $(document).ready(function() {
 		shrani();
 		console.log("Gumb dodaj odgovor je bil pritisnjen");
 		var opomniki = document.querySelector("#vprasanja");
-		opomniki.innerHTML += 'Vaš odgovor ' + (st + 1) + ' in stevilo tock zanj: <input type="text" class="form-control" id="odg' + st + '" name="odg' + st + '"  /> <input type="number" value=0 min="0" id="V' + st + '" style="width: 4em" ><br>';
+		
+		opomniki.innerHTML += '<br> <div>Vaš odgovor ' + (st + 1) + ' in stevilo tock zanj123:</div> <div class="col-xs-5">'+
+			'<input type="text" class="form-control" id="odg' + st + '" name="odg' + st + '"  />'+
+			'</div> <input type="number" class="form-control" value=0 min="0" id="V' + st + '" style="width: 4em" >';
+			
+		/*	
+			opomniki.innerHTML +='<br>' +
+			'<div>Vaš odgovor ' + (st + 1) + ' in stevilo tock zanj:</div> '+
+			'<div class="col-xs-5">'+
+				'<div class="input-group input-group-lg">'+
+					'<span class="input-group-addon" id= "odg'+st + '">' + (st+1) + '</span>' +
+					'<input type="text" class="form-control" aria-describedby="sizing-addon2">'+
+				'</div>'+ 
+				
+			'</div>'+
+			'<input type="number" class="form-control" value=0 min="0" id="V' + st + '" style="width: 4em" >';
+		*/
+		
 		podaj();
 		st++;
 
@@ -185,6 +200,7 @@ $(document).ready(function() {
 		var opomniki = document.querySelector("#vprasanja");
 		opomniki.innerHTML = '';
 		st = 0;
+		$("#opozorilo").text("");
 
 	});
 

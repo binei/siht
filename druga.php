@@ -18,7 +18,7 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="vprasanja.js"></script>
-		<script src="skripta22.js"></script>
+		<script src="skripta222.js"></script>
 
 		<style>
 
@@ -329,7 +329,7 @@ $db = new mysqli($servername, $username, $password, $database, $dbport);
 if (!$db) {
 	die("Connection failed: " . mysqli_connect_error());
 }
-$kvizID = 28;
+$kvizID = 25;
 
 //ce zelite zadnji vneseni kviz odkomentirajte spodnje vrstice 
 /*
@@ -383,7 +383,7 @@ file_put_contents("vprasanja.js","var ime= " .json_encode($ime).";\n",FILE_APPEN
 ?>
 
 		<section id="heading2">
-			<input  id="izpisi" type="button" class="btn  answer" value="izpisi" />
+<!--			<input  id="izpisi" type="button" class="btn  answer" value="izpisi" />   -->
 			<div id= vprasaj></div>
 			<form class="form-inline">
 				<div id="moznost">
@@ -392,15 +392,15 @@ file_put_contents("vprasanja.js","var ime= " .json_encode($ime).";\n",FILE_APPEN
 			<div id="gumbi" align="center">
 				<input  id="nazaj" type="button" class="btn  answer red" value="NAZAJ" />
 				<input  id="naprej" type="button" class="btn  answer blue" value="NAPREJ" />
-				<input  id="zakljuci" type="button" class="btn  answer blue" value="zakljuci kviz" />
+			<!--	<input  id="zakljuci" type="button" class="btn  answer blue" value="zakljuci kviz" /> -->
 			</div>
-			
 			<br>
-			
+<!--			
 			<div id="drugigumbi" align="center">
 				<input  id="oceni" type="button" class="btn  answer" value="oceni me!" />
 				<input  id="download" type="button" class="btn  answer" value="download!" />
 			</div>        
+-->			
 			<div id ="napis">
 			
 			</div>

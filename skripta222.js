@@ -72,13 +72,16 @@ var izpisivprasanja = function() {
 }
 
 var zamegligumbe = function() {
+	
 	document.getElementById("naprej").disabled = false;
+	document.getElementById("naprej").value = "NAPREJ";
 	document.getElementById("nazaj").disabled = false;
 	if (trenutnoVprasanje <= 0) {
 		document.getElementById("nazaj").disabled = true;
 	}
 	if (trenutnoVprasanje == vsavprasanja.length - 1) {
-		document.getElementById("naprej").disabled = true;
+		//document.getElementById("naprej").disabled = true;
+		document.getElementById("naprej").value = "ZAKLJUCI KVIZ";
 	}
 
 }
@@ -187,6 +190,10 @@ $(document).ready(function() {
 			if (trenutnoVprasanje < stvprasanj - 1) {
 				trenutnoVprasanje++;
 			}
+			else{
+				zakljuci();
+			}
+			
 			obarvaj_krogce();
 			mozniodgovori();
 
@@ -236,7 +243,7 @@ $(document).ready(function() {
 		potegnidol();
 	});
 
-	$("#zakljuci").click(function() {
+	function zakljuci () {
 		if (trenutnoVprasanje == vsavprasanja.length - 1 && checkradio() != -1) {
 			vasiodg[trenutnoVprasanje] = checkradio();
 			vasiodgid[trenutnoVprasanje] = vsiidodg[trenutnoVprasanje][checkradio()];
@@ -254,7 +261,7 @@ $(document).ready(function() {
 		else {
 			$("#vnosvsajenega").text("vsi odgovori morajo biti izpolnjeni!");
 		}
-	});
+	};
 
 	/* 
     $("#link1").click(function(){
