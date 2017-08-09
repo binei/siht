@@ -1,5 +1,4 @@
 /*
-
         <?php
 			$vprasanje="ddede";
         ?>
@@ -8,13 +7,9 @@
         		var vsavprasanja= <?php 
         		echo $vprasanje; 
         ?>
-        		
         </script>
 
-
 */
-
-
 
 
 var vsavprasanja = [];
@@ -168,23 +163,23 @@ $("#dodajOdg").click(function() {
 	shrani();
 	//console.log("Gumb dodaj odgovor je bil pritisnjen");
 	var opomniki = document.querySelector("#vprasanja");
-	
+	/*
 	opomniki.innerHTML += '<br> <div>Vaš odgovor ' + (st + 1) + ' in stevilo tock zanj:</div> <div class="col-xs-5">'+
 		'<input type="text" class="form-control" id="odg' + st + '" name="odg' + st + '"  />'+
 		'</div> <input type="number" class="form-control" value=0 min="0" id="V' + st + '" style="width: 4em" >';
+	*/	
 		
-	/*	
-		opomniki.innerHTML +='<br>' +
-		'<div>Vaš odgovor ' + (st + 1) + ' in stevilo tock zanj:</div> '+
+		opomniki.innerHTML +='<br><div>' +
+		'<div>Vaš odgovor in stevilo tock zanj:</div> '+
 		'<div class="col-xs-5">'+
-			'<div class="input-group input-group-lg">'+
-				'<span class="input-group-addon" id= "odg'+st + '">' + (st+1) + '</span>' +
-				'<input type="text" class="form-control" aria-describedby="sizing-addon2">'+
+			'<div class="input-group" >'+
+				'<span class="input-group-addon" >' + (st+1) + '</span>' +
+				'<input type="text" id= "odg'+st + '" class="form-control" aria-describedby="basic-addon1">'+
 			'</div>'+ 
 			
 		'</div>'+
-		'<input type="number" class="form-control" value=0 min="0" id="V' + st + '" style="width: 4em" >';
-	*/
+		'<input type="number" class="form-control" value=0 min="0" id="V' + st + '" style="width: 4em" ></div>';
+	
 	podaj();
 	st++;
 });
@@ -195,6 +190,7 @@ $("#odstraniOdg").click(function() {
 	opomniki.innerHTML = '';
 	st = 0;
 	$("#opozorilo").text("");
+	$("#vprasanje").val("");
 
 });
 

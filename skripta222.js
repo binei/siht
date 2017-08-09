@@ -14,9 +14,7 @@ for (var i = 0; i < vsavpr.length; i++) {
 		odgovori: vsiodg[i],
 		tocke: idod
 	};
-	console.log(podatki);
 	vsavprasanja.push(podatki);
-	console.log(vsavpr[i]);
 }
 
 
@@ -56,7 +54,7 @@ var obarvaj_krogce = function() {
 
 }
 
-
+/*
 var izpisivprasanja = function() {
 	for (var vpr in vsavprasanja) {
 		var tock = 0;
@@ -70,7 +68,7 @@ var izpisivprasanja = function() {
 		console.log("vseh tock je : " + tock)
 	}
 }
-
+*/
 var zamegligumbe = function() {
 	
 	document.getElementById("naprej").disabled = false;
@@ -146,7 +144,6 @@ $(document).ready(function() {
 	//document.getElementById('#oceni').style.visibility = 'hidden';
 	var checkradio = function() {
 		for (var i = 0; i < vsavprasanja[trenutnoVprasanje].odgovori.length; i++) {
-			//console.log("grem ces");
 			if ($("#O" + i).is(':checked')) {
 				return i;
 			}
@@ -225,10 +222,6 @@ $(document).ready(function() {
    */
 
 	//tudi oceni ne bo potrebna in potrebno je odstraniti tudi gumb oceni    
-	$("#oceni").click(function() {
-		console.log("vase stevilo tock je " + stTock() + " hvala ker ste resili kviz");
-	});
-
 	var preveriKonec = function() {
 		for (var i = 0; i < vasiodg.length; i++) {
 			if (vasiodg[i] == -1) return 0;

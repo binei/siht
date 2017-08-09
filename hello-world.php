@@ -6,7 +6,6 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link href="stili1.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="skripta11.js"></script>
         <link href="css/clean-blog.css" rel="stylesheet">

@@ -14,11 +14,6 @@ if ($db->connect_error) {
 } 
 echo "Connected successfully (".$db->host_info.")";
 
-
-
-
-
-
 echo "<br> tole je tabela KVIZI: <br>";
 $sql = "SELECT id, ime_kviza FROM kvizi";
 $result = $db->query($sql);

@@ -68,8 +68,6 @@ $_SESSION['IDodg'] = $podatki;
 		<link href="css/style.css?version=<?php echo $ver; ?>" rel="stylesheet">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="vprasanja.js"></script>
-		<script src="skripta22.js"></script>
 
 		<style>
 
